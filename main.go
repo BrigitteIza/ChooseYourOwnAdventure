@@ -2,7 +2,6 @@ package main
 
 import (
 	"ChooseYourOwnAdventure/story"
-	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
@@ -17,9 +16,8 @@ func main() {
 		panic(err)
 	}
 
-	d := json.NewDecoder(f)
-	var story story.Story
-	if err := d.Decode(&story); err != nil {
+	story, err := story.JsonStory(f)
+	if err != nil {
 		panic(err)
 	}
 
